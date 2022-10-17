@@ -1,49 +1,46 @@
-# from flask import Flask, render_template, request
 
+from urllib import response
 import db
 from db import addUser
-
-
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, Response
 from flask_restful import Resource, Api
 from flask_cors import CORS, cross_origin
+import logging
+from flask import Flask
+from flask_cors import CORS
 
-
-# creating the flask app
 app = Flask(__name__)
-# creating an API object
 api = Api(app)
+CORS(app)
 
-
-
-
-# making a class for a particular resource
-# the get, post methods correspond to get and post requests
-# they are automatically mapped by flask_restful.
-# other methods include put, delete, etc.
 
 class User(Resource):
 
     # corresponds to the GET request.
-    # this function is called whenever there
-    # is a GET request for this resource
     def get(self):
         
         return jsonify({'message': 'hello world'})
 
     # Corresponds to POST request
     def post(self):
+     
+        print(request)
         data = request.get_json()
-        db.addUser(data['username'], data['password'], data['email'])
-        return restful.request.form, 201, {'Access-Control-Allow-Origin': '*'} 
+        print(data)
+        db.addUser(data["username"], data["password"], data["email"])
+
+        return({'Access-Control-Allow-Origin': "*"})
     def options (self):
-        return {'Allow' : 'PUT' }, 200, \
-            { 'Access-Control-Allow-Origin': '*', \
-              'Access-Control-Allow-Methods' : 'PUT,GET' 
-            }
+        return(
+            
+             {'Allow' : 'PUT' }, 200, \
+            { 'Access-Control-Allow-Origin': "*", \
+              'Access-Control-Allow-Methods' : 'PUT,GET', \
+              "Access-Control-Allow-Headers" : "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
+            })
+            
 
 
-# another resource to calculate the square of a number
 
 
 # adding the defined resources along with their corresponding urls
@@ -53,4 +50,4 @@ api.add_resource(User, '/register')
 # driver function
 if __name__ == '__main__':
 
-    app.run(debug = True)
+    app.run(debug= True)
