@@ -7,9 +7,10 @@ def createDB(): #This initially creates sql database, only need to run once
         c = conn.cursor()
         c.execute('''CREATE TABLE users
                     (
+                    id TEXT,
                     username TEXT,
                     password TEXT,
-                    score INTEGER
+                    score TEXT
                     )''')
         conn.commit()
         return True
@@ -21,12 +22,12 @@ def createDB(): #This initially creates sql database, only need to run once
         if conn is not None:
             conn.close()
 
-def addUser(username, password, score): #Adds user to database
-    dataToInsert = [(username, password, score)]
+def addUser(id, username, password, score): #Adds user to database
+    dataToInsert = [(id, username, password, score)]
     try:
         conn = sqlite3.connect("user.db")
         c = conn.cursor()
-        c.executemany("INSERT INTO users VALUES (?, ?, ?)", dataToInsert)
+        c.executemany("INSERT INTO users VALUES (?, ?, ?, ?)", dataToInsert)
         conn.commit()
     except sqlite3.IntegrityError:
         print("Error: Tried to duplicate record")
