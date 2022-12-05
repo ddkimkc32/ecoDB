@@ -17,14 +17,12 @@ Factors:
 
 def calculateScore(electric, gas, oil, mileage, shortFlights, longFlights, newspaper, aluminum):
     total = 0
-
     electric *= 105
     gas *= 105
     oil *= 113
     mileage *= .79
     shortFlights *= 1100
     longFlights *= 4400
-
     if newspaper == False:
         total += 184
     if aluminum == False:
