@@ -1,6 +1,5 @@
 import datetime
 import sqlite3
-from flask import session
 
 def createDB(): #This initially creates sql database, only need to run once
     try:
