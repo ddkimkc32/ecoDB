@@ -46,7 +46,6 @@ class User(Resource):
 # adding the defined resources along with their corresponding urls
 api.add_resource(User, '/register')
 
-
 # driver function
 if __name__ == '__main__':
 
