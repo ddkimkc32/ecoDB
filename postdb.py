@@ -37,6 +37,7 @@ def displayDB(): #Displays database for debugging
             conn.close()
 
 def addPosts(id, owner, content):
+
     timestamp = datetime.datetime.now()
 
     dataToInsert = [(id, owner, content, timestamp)]
@@ -78,6 +79,3 @@ def sortPosts():
             conn.close()
 
     return posts
-
-
-

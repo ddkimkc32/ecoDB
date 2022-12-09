@@ -41,8 +41,6 @@ def checkScore(score):
         return "High"
 
 def mockUserInput():
-    newspaper = True
-    aluminum = True
 
     electric = int(input("Enter in your monthly electric bill: "))
     gas = int(input("Enter in your monthly gas bill: "))
