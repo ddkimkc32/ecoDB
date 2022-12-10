@@ -1,5 +1,6 @@
 import datetime
 import sqlite3
+import uuid
 
 def createDB(): #This initially creates sql database, only need to run once
     try:
@@ -36,8 +37,8 @@ def displayDB(): #Displays database for debugging
         if conn is not None:
             conn.close()
 
-def addPosts(id, owner, content):
-
+def addPosts(owner, content):
+    id = uuid.uuid4()
     timestamp = datetime.datetime.now()
 
     dataToInsert = [(id, owner, content, timestamp)]

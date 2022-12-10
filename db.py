@@ -3,6 +3,7 @@ import sqlite3
 import os
 import binascii
 import hashlib
+import uuid
 
 def createDB(): #This initially creates sql database, only need to run once
     try:
@@ -33,7 +34,9 @@ def saltPassword(password) -> str: #Cybersecurity (only backend)
     this_hash = hashlib.sha1(hashable).hexdigest()
     return salt + this_hash
 
-def addUser(id, username, password, score): #Adds user to database (endpoint)
+def addUser(username, password, score): #Adds user to database (endpoint)
+    id = uuid.uuid4()
+
     saltedPassword = saltPassword(password)
     dataToInsert = [(id, username, saltedPassword, score)]
     try:
