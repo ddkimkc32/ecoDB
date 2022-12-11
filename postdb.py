@@ -8,7 +8,7 @@ def createDB(): #This initially creates sql database, only need to run once
         c = conn.cursor()
         c.execute('''CREATE TABLE posts
                     (
-                    id INTEGER,
+                    id TEXT,
                     owner TEXT,
                     content TEXT,
                     timestamp TIMESTAMP
@@ -38,7 +38,7 @@ def displayDB(): #Displays database for debugging
             conn.close()
 
 def addPosts(owner, content):
-    id = uuid.uuid4()
+    id = str(uuid.uuid4().int)
     timestamp = datetime.datetime.now()
 
     dataToInsert = [(id, owner, content, timestamp)]
