@@ -24,7 +24,7 @@ class User(Resource):
         print(request)
         data = request.get_json()
         print(data)
-        db.addUser(data["username"], data["password"]) #Needs score, not email for backend
+        db.addUser(data["username"], data["password"], data["score"])
         return({'Access-Control-Allow-Origin': "*"})
     def options (self):
         return(

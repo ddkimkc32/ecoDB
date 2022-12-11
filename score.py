@@ -1,8 +1,6 @@
 #Score-calculating algorithm
 
 '''
-My plan is to take input a few factors and form a geometric mean of the value out of 1000
-
 Factors:
     - Electric Bill 126
     - Gas Bill 62

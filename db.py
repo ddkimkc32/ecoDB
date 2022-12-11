@@ -14,7 +14,7 @@ def createDB(): #This initially creates sql database, only need to run once
                     id TEXT,
                     username TEXT,
                     password TEXT,
-                    score TEXT
+                    score INTEGER
                     )''')
         conn.commit()
         return True
@@ -35,14 +35,14 @@ def saltPassword(password) -> str: #Cybersecurity (only backend)
     return salt + this_hash
 
 def addUser(username, password, score): #Adds user to database (endpoint)
-    id = uuid.uuid4()
+    id = str(uuid.uuid4().int)
 
     saltedPassword = saltPassword(password)
     dataToInsert = [(id, username, saltedPassword, score)]
     try:
         conn = sqlite3.connect("user.db")
         c = conn.cursor()
-        c.executemany("INSERT INTO users VALUES (?, ?, ?, ?)", dataToInsert)
+        c.executemany("INSERT INTO users VALUES(?, ?, ?, ?)", dataToInsert)
         conn.commit()
     except sqlite3.IntegrityError:
         print("Error: Tried to duplicate record")
@@ -93,5 +93,3 @@ def displayDB(): #Displays database for debugging
             c.close()
         if conn is not None:
             conn.close()
-
-displayDB()
