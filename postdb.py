@@ -1,4 +1,4 @@
-import datetime
+from datetime import date
 import sqlite3
 
 def createDB(): #This initially creates sql database, only need to run once
@@ -37,7 +37,7 @@ def displayDB(): #Displays database for debugging
             conn.close()
 
 def addPosts(id, owner, content):
-    timestamp = datetime.datetime.now()
+    timestamp = date.today()
 
     dataToInsert = [(id, owner, content, timestamp)]
     try:
@@ -59,7 +59,6 @@ def sortPosts():
     # Sorts from newest to oldest, returns array of posts as dictionary and prints it out for debugging
     #DESC for newest to oldest, ASC for oldest to newest
     posts = [{}]
-
     try:
         conn = sqlite3.connect("posts.db")
         c = conn.cursor()

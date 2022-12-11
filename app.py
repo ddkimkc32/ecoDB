@@ -2,7 +2,7 @@
 from urllib import response
 import db, postdb
 from db import addUser
-from postdb import addPosts
+from postdb import addPosts, sortPosts
 from flask import Flask, jsonify, request, Response
 from flask_restful import Resource, Api
 from flask_cors import CORS, cross_origin
@@ -40,10 +40,11 @@ class User(Resource):
 class Post(Resource):
     def get(self):
         # return getPosts
-        return
+        data = sortPosts()
+        return(data)
     def post(self):
         data = request.get_json()
-        postdb.addPosts(data["username"], data["content"], data["date"])
+        postdb.addPosts(data["id"], data["username"], data["content"])
         return jsonify({
             "message": "Success"
         })
