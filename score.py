@@ -1,8 +1,6 @@
 #Score-calculating algorithm
 
 '''
-My plan is to take input a few factors and form a geometric mean of the value out of 1000
-
 Factors:
     - Electric Bill 126
     - Gas Bill 62
@@ -41,8 +39,6 @@ def checkScore(score):
         return "High"
 
 def mockUserInput():
-    newspaper = True
-    aluminum = True
 
     electric = int(input("Enter in your monthly electric bill: "))
     gas = int(input("Enter in your monthly gas bill: "))

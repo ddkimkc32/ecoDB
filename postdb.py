@@ -1,5 +1,6 @@
 from datetime import date
 import sqlite3
+import uuid
 
 def createDB(): #This initially creates sql database, only need to run once
     try:
@@ -7,7 +8,7 @@ def createDB(): #This initially creates sql database, only need to run once
         c = conn.cursor()
         c.execute('''CREATE TABLE posts
                     (
-                    id INTEGER,
+                    id TEXT,
                     owner TEXT,
                     content TEXT,
                     timestamp TIMESTAMP
@@ -77,6 +78,3 @@ def sortPosts():
             conn.close()
 
     return posts
-
-
-

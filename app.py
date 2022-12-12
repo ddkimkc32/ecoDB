@@ -24,7 +24,7 @@ class User(Resource):
         print(request)
         data = request.get_json()
         print(data)
-        db.addUser(data["username"], data["password"], data["email"])
+        db.addUser(data["username"], data["password"], data["score"])
         return({'Access-Control-Allow-Origin': "*"})
     def options (self):
         return(
@@ -34,8 +34,6 @@ class User(Resource):
               'Access-Control-Allow-Methods' : 'PUT,GET', \
               "Access-Control-Allow-Headers" : "Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With"
             })
-            
-
 
 class Post(Resource):
     def get(self):
@@ -44,7 +42,7 @@ class Post(Resource):
         return(data)
     def post(self):
         data = request.get_json()
-        postdb.addPosts(data["id"], data["username"], data["content"])
+        postdb.addPosts(data["username"], data["content"]) #Date can be provided in backend
         return jsonify({
             "message": "Success"
         })
